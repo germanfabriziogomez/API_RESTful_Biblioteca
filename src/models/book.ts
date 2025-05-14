@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 import { iBook } from "../interfaces/bookInterface";
 
 const bookSchema = new Schema<iBook>({
@@ -9,3 +9,7 @@ const bookSchema = new Schema<iBook>({
     available: {type: Boolean}
 })
 
+//Creo el modelo en la coleccion "books" siguiento el esquema bookSchema
+const Book = model<iBook>("books",bookSchema);
+
+export {bookSchema, Book}

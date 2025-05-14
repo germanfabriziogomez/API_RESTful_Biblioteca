@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 process.loadEnvFile()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8080
 const URI_DB = process.env.URI_DB || ""
 
 const connectDB = async () => {
@@ -15,4 +15,4 @@ const connectDB = async () => {
     }
 }
 
-export {connectDB}
+export {connectDB,PORT}
