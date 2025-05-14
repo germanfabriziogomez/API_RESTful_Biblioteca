@@ -1,5 +1,6 @@
 import { Schema } from "mongoose";
 import { iBook } from "../interfaces/bookInterface";
+
 const bookSchema = new Schema<iBook>({
     title: { type:String, required:true, unique: true},
     author: { type: String, required: true},
