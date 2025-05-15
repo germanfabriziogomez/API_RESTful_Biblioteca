@@ -1,7 +1,8 @@
 import { Router, Request, Response } from "express";
-import { getAllBooks, addBook } from "../controllers/bookController";
+import { getAllBooks, addBook, findBookWithId } from "../controllers/bookController";
 
 const bookRouter = Router()
 bookRouter.get("/", getAllBooks);
-bookRouter.post("/",addBook)
+bookRouter.get("/:id", findBookWithId)
+bookRouter.post("/", addBook)
 export { bookRouter }

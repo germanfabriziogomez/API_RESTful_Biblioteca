@@ -1,10 +1,10 @@
 import { iBook } from "./bookInterface"
 
-interface iResponse 
-{
+
+interface iResponse {
     success: boolean,
-    data?:iBook[],
-    message?:string
+    data?: iBook[] | iBook,
+    message?: string
 }
 
-export {iResponse}
+export { iResponse }
