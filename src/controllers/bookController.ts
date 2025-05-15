@@ -1,18 +1,38 @@
-import {Request,Response} from 'express'
+import { Request, Response } from 'express'
 import { Book } from '../models/book'
 import { iResponse } from '../interfaces/responseInterface';
 import { iBook } from '../interfaces/bookInterface';
 
-const getAllBooks = async (req:Request, res: Response): Promise<any> => {
+const getAllBooks = async (req: Request, res: Response): Promise<any> => {
     try {
         const books: iBook[] = await Book.find({});
-        const response: iResponse = {success: true, data: books}
-        res.json(response).status(200);
+        const response: iResponse = { success: true, data: books }
+        res.status(200).json(response);
     } catch (error) {
-        const err= error as Error
-        const response: iResponse = {success: false, message: err.message}
-        res.json(response).status(404)
+        const err = error as Error
+        const response: iResponse = { success: false, message: err.message }
+        res.status(500).json(response)
     }
 
 }
-export {getAllBooks}
+
+const addBook = async (req: Request, res: Response): Promise<any> => {
+
+    try {
+        //obtengo los datos enviados por el front haciendo el destructuring
+        const { title, author, publishedYear, genre, available } = req.body;
+        // genero el libro
+        const book= new Book({ title, author, genre, available })
+        await book.save()
+        const books:iBook[] = await Book.find({});
+        // genero la respuesta
+        const response: iResponse = {success:true, data: books}
+        return res.status(201).json(response)
+    } catch (error) {
+        const err = error as Error;
+        // genero una respuesta del tipo error
+        const response:iResponse = {success:false, message: err.message}
+        return res.status(400).json(response)
+    }
+}
+export { getAllBooks, addBook }
