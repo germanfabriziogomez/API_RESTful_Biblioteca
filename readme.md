@@ -26,9 +26,9 @@ Este proyecto es una API RESTful desarrollada con **Node.js**, **Express** y **M
     >> npm install  
 ```
 3. Crea un archivo .env y define las variables:
-PORT=3000
-MONGO_URI=mongodb+srv://usuario:contraseña@cluster.mongodb.net/biblioteca
-JWT_SECRET=tuClaveSecreta
+PORT=
+URI_DB=
+
 
 
 4. Inicia el servidor:
